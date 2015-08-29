@@ -24,14 +24,14 @@
 #include "SPI.h"
 #include "ILI9341_t3.h"
 #include "ILI9341_fire.h"
+#include "font_ChanceryItalic.h"
 
-// For the Adafruit shield, these are the default.
 #define TFT_DC 20
 #define TFT_CS 21
 fireILI9341_t3 tft = fireILI9341_t3(TFT_CS, TFT_DC);
 
 void setup() {
-
+  
 //CS Flash-Chip
   pinMode(6, OUTPUT);
   digitalWrite(6, HIGH);
@@ -39,29 +39,40 @@ void setup() {
 //CS SD-Karte
   pinMode(10, OUTPUT);
   digitalWrite(10, HIGH);
-
-  SPI.setSCK(14);
+  
+  SPI.setSCK(14);      
   SPI.setMOSI(7);
   SPI.setMISO(12);
   SPI.begin();
 
 
-  tft.begin();
+  tft.begin(); 
   tft.setRotation(3);
-
+ 
   tft.fillScreen(ILI9341_BLACK);
-#if 0
+#if 0 
   tft.setTextSize(2);
   tft.setTextColor(ILI9341_GREENYELLOW);
   tft.println("Waiting for Arduino Serial Monitor...");
-  tft.fillScreen(ILI9341_BLACK);
+  tft.fillScreen(ILI9341_BLACK); 
   while (!Serial) ; // wait for Arduino Serial Monitor
   Serial.print("Start..");
-#endif
+#endif  
+  tft.setTextColor(ILI9341_PINK);
+  tft.setFont(Chancery_40_Italic);
+  tft.setCursor(50,60);
+  tft.println("Teensy 3.1");
+  tft.setCursor(60,120);
+  tft.println("ILI9341");  
+  tft.setFont(Chancery_20_Italic);
+  tft.setTextColor(ILI9341_CYAN);
+  tft.setCursor(20,180);
+  tft.println("Greetings to all members @");
+  tft.setCursor(60,200);
+  tft.println("forum.pjrc.com");    
 }
 
 
 void loop(void) {
  tft.fire();
 }
-
