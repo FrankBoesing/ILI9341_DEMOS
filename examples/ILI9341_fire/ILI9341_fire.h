@@ -30,7 +30,6 @@ static const int rows = 80;
 static const int cols = 320 ;
 static const int rowoffset = 239-rows*2;
 
-//un-protect some functions:
 class fireILI9341_t3: public ILI9341_t3
 {
 public:
