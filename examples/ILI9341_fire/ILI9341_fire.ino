@@ -70,6 +70,13 @@ void setup() {
   tft.println("Greetings to all members @");
   tft.setCursor(60,200);
   tft.println("forum.pjrc.com");    
+
+  //add some Stars
+  int i,y;
+  for (i=0;i<200;i++) {
+    y =  random(200);
+    tft.drawPixel(random(cols), y, tft.color565(200-y,200-y,200-y));
+  }
 }
 
 
