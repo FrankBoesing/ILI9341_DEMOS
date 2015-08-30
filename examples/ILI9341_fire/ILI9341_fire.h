@@ -30,6 +30,7 @@ static const int rows = 80;
 static const int cols = 320 ;
 static const int rowoffset = 239-rows*2;
 
+//un-protect some functions:
 class fireILI9341_t3: public ILI9341_t3
 {
 public:
@@ -38,17 +39,16 @@ public:
      int x,y,i,r;
      for (y=1;y<rows-1;y++) {
       SPI.beginTransaction(SPISettings(30000000, MSBFIRST, SPI_MODE0));
-    //tft.setAddr(0, y+rowoffset, cols-1, y+rowoffset);
+    //setAddr(0, y+rowoffset, cols-1, y+rowoffset);
       setAddr(0, y*2+rowoffset, cols-1, y*2+rowoffset);
       writecommand_cont(ILI9341_RAMWR);
       for (x=0; x<cols-1; x++) {
           writedata16_cont(colorpal[screen[y][x]]);
-          linebuf[x] =max((( (uint16_t)screen[y-1][x-1] + (uint16_t)screen[y-1][x] + (uint16_t)screen[y-1][x+1] +
+          screen[y-1][x] =max((( (uint16_t)screen[y-1][x-1] + (uint16_t)screen[y-1][x] + (uint16_t)screen[y-1][x+1] +
                              (uint16_t)screen[y  ][x-1] +                          + (uint16_t)screen[y][x+1] +
                              (uint16_t)screen[y+1][x-1] + (uint16_t)screen[y+1][x] + (uint16_t)screen[y+1][x+1]) >> 3) - 1,0);
        }
         SPI.endTransaction();
-        memcpy(&screen[y-1][0],&linebuf[0], sizeof(linebuf));
       }
 
       //add some noise to last line
@@ -56,7 +56,8 @@ public:
         screen[rows-1][x] = random(255);
 
       //add big hotspots
-      r = random(15);
+     
+      r = random(40);
       for (i=0; i<r; i++) {
         x = random(cols-3)+1;
         screen[rows-4][x-1]=255;
@@ -66,11 +67,11 @@ public:
         screen[rows-3][x]=255;
         screen[rows-3][x+1]=255;
       }
+     
   }
 private:
   uint16_t colorpal[256];
   uint8_t screen[rows][cols];
-  uint8_t linebuf[cols];
   void init(){
       //clear screenbuf
       memset(screen, 0, sizeof(screen));

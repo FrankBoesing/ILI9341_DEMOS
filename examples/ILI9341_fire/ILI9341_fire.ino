@@ -25,10 +25,14 @@
 #include "ILI9341_t3.h"
 #include "ILI9341_fire.h"
 #include "font_ChanceryItalic.h"
+#include "font_Arial.h"
 
 #define TFT_DC 20
 #define TFT_CS 21
 fireILI9341_t3 tft = fireILI9341_t3(TFT_CS, TFT_DC);
+
+int frames = 0;  
+int m;
 
 void setup() {
   
@@ -58,6 +62,12 @@ void setup() {
   while (!Serial) ; // wait for Arduino Serial Monitor
   Serial.print("Start..");
 #endif  
+  tft.setFont(Arial_9);
+  tft.setTextColor(ILI9341_CYAN);
+  tft.setCursor(0,0);
+  tft.print(F_CPU / 1e6);
+  tft.print(" MHz FPS:");
+  
   tft.setTextColor(ILI9341_PINK);
   tft.setFont(Chancery_40_Italic);
   tft.setCursor(50,60);
@@ -77,9 +87,19 @@ void setup() {
     y =  random(200);
     tft.drawPixel(random(cols), y, tft.color565(200-y,200-y,200-y));
   }
+  m = micros();
 }
 
 
-void loop(void) {
+void loop(void) { 
  tft.fire();
+ frames++;
+ if ( micros() - m >= 1000000) {    
+    tft.setFont(Arial_9);
+    tft.setCursor(110,0);
+    tft.print(frames);    
+    frames = 0;
+    m=micros();
+ }
 }
+
