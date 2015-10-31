@@ -9,6 +9,6 @@ Video:https://www.youtube.com/watch?v=MBjGkReCwd4
 ===
 Mandelbrot: With144MHz > 1FPS
 
-The graphics is needs a minor fraction of time needed for calculations.
+The graphics needs a minor fraction of time needed for calculations.
 
 ![mandelbrot](https://github.com/FrankBoesing/ILI9341_DEMOS/blob/master/img/mandelbrot.jpg)
