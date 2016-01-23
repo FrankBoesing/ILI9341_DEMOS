@@ -12,7 +12,7 @@ The graphics needs a minor fraction of time needed for calculations.
 ![mandelbrot](https://github.com/FrankBoesing/ILI9341_DEMOS/blob/master/img/mandelbrot.jpg)
 ===
 A Tetris-clone : https://github.com/FrankBoesing/T3TRIS
-
+![](https://github.com/FrankBoesing/T3TRIS/blob/master/t3tris/extras/board.jpg)
 ===
 ZKARCHER's DemoSauce with C64-SID-Sound added:
 [![DemoSauce](http://img.youtube.com/vi/sTMtc8xEFWo/0.jpg)](http://www.youtube.com/watch?v=sTMtc8xEFWoE "DemoSauce")
