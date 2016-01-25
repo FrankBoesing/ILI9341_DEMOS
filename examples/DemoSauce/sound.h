@@ -22,8 +22,9 @@ void sound(void);
 void soundInit(void) {
    AudioMemory(4);
    sgtl5000_1.enable();
-   sgtl5000_1.volume(0.6);  
-   myTimer.begin(sound, 20*1000);  
+   sgtl5000_1.volume(0.6);
+   myTimer.begin(sound, 20*1000);
+   myTimer.priority(255);//lowest priority
 }
 
 void sound(void) {
