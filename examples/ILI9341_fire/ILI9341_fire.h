@@ -38,7 +38,7 @@ public:
   void fire(void) {
      int x,y,i,r;
      for (y=1;y<rows-1;y++) {
-      SPI.beginTransaction(SPISettings(30000000, MSBFIRST, SPI_MODE0));
+      SPI.beginTransaction(SPISettings(72000000, MSBFIRST, SPI_MODE0));
     //setAddr(0, y+rowoffset, cols-1, y+rowoffset);
       setAddr(0, y*2+rowoffset, cols-1, y*2+rowoffset);
       writecommand_cont(ILI9341_RAMWR);
